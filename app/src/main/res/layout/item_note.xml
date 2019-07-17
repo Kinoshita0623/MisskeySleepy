@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="org.panta.misskeysleepy.viewmodel.NoteViewModel"/>
+        <import type="android.view.View"/>
+    </data>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+    >
+        <TextView
+                android:id="@+id/note_status"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text='@{viewModel.noteStatus, default = noteStatus}'
+                android:visibility="@{viewModel.noteStatus != null ? View.VISIBLE : View.GONE}"
+                android:textSize="17sp"
+        />
+        <ImageView
+                android:id="@+id/avatar_icon"
+                android:layout_width="50dp" android:layout_height="50dp"
+                android:layout_below="@+id/note_status"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="10dp"
+                app:imageUrl="@{viewModel.avatarUrl}"
+        />
+        <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/avatar_icon"
+                android:layout_below="@+id/note_status"
+                android:layout_marginEnd="8dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text='@{viewModel.userName, default = "userName"}'
+        />
+        <TextView
+                android:id="@+id/user_id"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_below="@+id/note_status"
+                android:layout_toEndOf="@+id/user_name"
+                android:layout_marginEnd="8dp"
+                android:text='@{viewModel.userId, default = "userId"}'
+        />
+        <TextView
+                android:id="@+id/elapsed_time"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/user_id"
+                android:layout_below="@+id/note_status"
+                android:text='@{viewModel.elapsedTime, default="9秒経過"}'
+        />
+        <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/avatar_icon"
+                android:layout_below="@+id/user_name"
+                android:text='@{viewModel.text, default="uhwfohawoipejfoiawjfioawjefioohoaohuhgowajfoijwaeiofjawiofjiwoaefjiwoaejfwaojfo[iwaefwaioejfo[iwajefio[wajfoijwaioefjaowi[jfiowaefwaio[fj[oaw"}'
+                android:visibility='@{ viewModel.text != null ? View.VISIBLE : View.GONE, default = visible}'
+        />
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/avatar_icon"
+                        android:layout_below="@+id/text"
+                        android:padding="8dp"
+                        android:background="@drawable/shape_sub_note_background"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:visibility="@{viewModel.subNoteVisibility == null ? View.GONE : viewModel.subNoteVisibility}"
+
+        >
+            <ImageView
+                    android:id="@+id/sub_note_avatar_icon"
+                    android:layout_width="20dp" android:layout_height="20dp"
+                    android:layout_marginEnd="8dp"
+                    app:imageUrl="@{viewModel.subNoteAvatarUrl}"
+            />
+
+            <TextView
+                    android:id="@+id/sub_note_user_name"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/sub_note_avatar_icon"
+                    android:text='@{viewModel.subNoteUserName, default="subNoteUserName"}'
+                    android:layout_marginEnd="8dp"
+                    android:textStyle="bold"
+            />
+
+            <TextView
+                    android:id="@+id/sub_note_user_id"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/sub_note_user_name"
+                    android:text='@{viewModel.subNoteUserId, default="subNoteUserName"}'
+            />
+            <TextView
+                    android:layout_below="@+id/sub_note_avatar_icon"
+
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text='@{viewModel.subNoteText, default="texttexttexttexttexttextetetetetetetetetetetetetetettetetetetet"}'
+            />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>
